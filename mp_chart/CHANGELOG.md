@@ -1,3 +1,6 @@
+## 1.8.0 2025-08-04
+* Flutter 3.32 updates
+* Upgrade dependencies 
 ## 1.7.1 2024-10-08
 * Example app: Upgrade kotlin plugin from 1.7.20 to 1.8.22 and Gradle from 8.2 to 8.3, to sync it with Flutter 3.24
 ## 1.7.0 2024-09-20

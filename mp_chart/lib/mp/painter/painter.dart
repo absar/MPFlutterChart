@@ -170,7 +170,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
     }
     initDefaultWithData();
     if (_rendererSettingFunction != null && renderer != null) {
-      _rendererSettingFunction!(renderer);
+      _rendererSettingFunction(renderer);
     }
     init();
     _isInit = true;
@@ -178,9 +178,9 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
 
   void initDefaultWithData() {
     // calculate how many digits are needed
-    _setupDefaultFormatter(_data!.getYMin1(), _data!.getYMax1());
+    _setupDefaultFormatter(_data!.getYMin1(), _data.getYMax1());
 
-    for (IDataSet set in _data!.dataSets!) {
+    for (IDataSet set in _data.dataSets!) {
       if (set.needsFormatter() ||
           set.getValueFormatter() == _defaultValueFormatter)
         set.setValueFormatter(_defaultValueFormatter);
@@ -204,7 +204,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
   void _setupDefaultFormatter(double? min1, double? max1) {
     double reference = 0;
 
-    if (_data == null || _data!.getEntryCount() < 2) {
+    if (_data == null || _data.getEntryCount() < 2) {
       reference = max(min1!.abs(), max1!.abs());
     } else {
       reference = (max1! - min1!).abs();
@@ -233,8 +233,8 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
           Paint()..color = _infoBackgroundColor!);
       MPPointF c = getCenter(size);
       _infoPaint!.layout();
-      _infoPaint!.paint(canvas,
-          Offset(c.x! - _infoPaint!.width / 2, c.y! - _infoPaint!.height / 2));
+      _infoPaint.paint(canvas,
+          Offset(c.x! - _infoPaint.width / 2, c.y! - _infoPaint.height / 2));
       return;
     }
 
@@ -253,23 +253,23 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
   /// Draws the description text in the bottom right corner of the chart (per default)
   void drawDescription(Canvas c, Size size) {
     // check if description should be drawn
-    if (_description != null && _description!.enabled) {
-      MPPointF? position = _description!.position;
+    if (_description != null && _description.enabled) {
+      MPPointF? position = _description.position;
       double? x, y;
       // if no position specified, draw on default position
       if (position == null) {
         x = size.width -
             _viewPortHandler!.offsetRight() -
-            _description!.xOffset!;
+            _description.xOffset!;
         y = size.height -
-            _viewPortHandler!.offsetBottom() -
-            _description!.yOffset!;
+            _viewPortHandler.offsetBottom() -
+            _description.yOffset!;
       } else {
         x = position.x;
         y = position.y;
       }
       _descPaint!.layout();
-      _descPaint!.paint(c, Offset(x!, y!));
+      _descPaint.paint(c, Offset(x!, y!));
     }
   }
 
@@ -372,10 +372,10 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
 
     if (callListener && _selectionListener != null) {
       if (!valuesToHighlight())
-        _selectionListener?.onNothingSelected();
+        _selectionListener.onNothingSelected();
       else {
         // notify the listener
-        _selectionListener?.onValueSelected(e, high);
+        _selectionListener.onValueSelected(e, high);
       }
     }
   }
@@ -409,7 +409,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
 
       IDataSet set = _data!.getDataSetByIndex(highlight.dataSetIndex)!;
 
-      Entry? e = _data!.getEntryForHighlight(_indicesToHighlight![i]);
+      Entry? e = _data.getEntryForHighlight(_indicesToHighlight![i]);
       int entryIndex = set.getEntryIndex2(e);
       // make sure entry not null
       if (e == null ||
@@ -421,10 +421,10 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry?>>?>
       if (!_viewPortHandler!.isInBounds(pos[0], pos[1])) continue;
 
       // callbacks to update the content
-      _marker!.refreshContent(e, highlight);
+      _marker.refreshContent(e, highlight);
 
       // draw the marker
-      _marker!.draw(canvas, pos[0], pos[1]);
+      _marker.draw(canvas, pos[0], pos[1]);
     }
   }
 

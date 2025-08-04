@@ -249,7 +249,7 @@ abstract class BarLineChartBasePainter<
   void onPaint(Canvas canvas, Size size) {
     if (_backgroundPaint != null) {
       canvas.drawRect(
-          Rect.fromLTRB(0, 0, size.width, size.height), _backgroundPaint!);
+          Rect.fromLTRB(0, 0, size.width, size.height), _backgroundPaint);
     }
 
     // execute all drawing commands
@@ -261,22 +261,22 @@ abstract class BarLineChartBasePainter<
     _axisRendererLeft!.renderAxisLine(canvas);
     _axisRendererRight!.renderAxisLine(canvas);
 
-    if (xAxis!.drawGridLinesBehindData) _xAxisRenderer!.renderGridLines(canvas);
+    if (xAxis!.drawGridLinesBehindData) _xAxisRenderer.renderGridLines(canvas);
 
     if (_axisLeft!.drawGridLinesBehindData)
-      _axisRendererLeft!.renderGridLines(canvas);
+      _axisRendererLeft.renderGridLines(canvas);
 
     if (_axisRight!.drawGridLinesBehindData)
-      _axisRendererRight!.renderGridLines(canvas);
+      _axisRendererRight.renderGridLines(canvas);
 
     if (xAxis!.enabled && xAxis!.drawLimitLineBehindData)
-      _xAxisRenderer!.renderLimitLines(canvas);
+      _xAxisRenderer.renderLimitLines(canvas);
 
-    if (_axisLeft!.enabled && _axisLeft!.drawLimitLineBehindData)
-      _axisRendererLeft!.renderLimitLines(canvas);
+    if (_axisLeft.enabled && _axisLeft.drawLimitLineBehindData)
+      _axisRendererLeft.renderLimitLines(canvas);
 
-    if (_axisRight!.enabled && _axisRight!.drawLimitLineBehindData)
-      _axisRendererRight!.renderLimitLines(canvas);
+    if (_axisRight.enabled && _axisRight.drawLimitLineBehindData)
+      _axisRendererRight.renderLimitLines(canvas);
 
     // make sure the data cannot be drawn outside the content-rect
     canvas.save();
@@ -285,13 +285,13 @@ abstract class BarLineChartBasePainter<
     renderer!.drawData(canvas);
 
     if (!xAxis!.drawGridLinesBehindData)
-      _xAxisRenderer!.renderGridLines(canvas);
+      _xAxisRenderer.renderGridLines(canvas);
 
-    if (!_axisLeft!.drawGridLinesBehindData)
-      _axisRendererLeft!.renderGridLines(canvas);
+    if (!_axisLeft.drawGridLinesBehindData)
+      _axisRendererLeft.renderGridLines(canvas);
 
-    if (!_axisRight!.drawGridLinesBehindData)
-      _axisRendererRight!.renderGridLines(canvas);
+    if (!_axisRight.drawGridLinesBehindData)
+      _axisRendererRight.renderGridLines(canvas);
 
     // if highlighting is enabled
     if (valuesToHighlight())
@@ -303,17 +303,17 @@ abstract class BarLineChartBasePainter<
     renderer!.drawExtras(canvas);
 
     if (xAxis!.enabled && !xAxis!.drawLimitLineBehindData)
-      _xAxisRenderer!.renderLimitLines(canvas);
+      _xAxisRenderer.renderLimitLines(canvas);
 
-    if (_axisLeft!.enabled && !_axisLeft!.drawLimitLineBehindData)
-      _axisRendererLeft!.renderLimitLines(canvas);
+    if (_axisLeft.enabled && !_axisLeft.drawLimitLineBehindData)
+      _axisRendererLeft.renderLimitLines(canvas);
 
-    if (_axisRight!.enabled && !_axisRight!.drawLimitLineBehindData)
-      _axisRendererRight!.renderLimitLines(canvas);
+    if (_axisRight.enabled && !_axisRight.drawLimitLineBehindData)
+      _axisRendererRight.renderLimitLines(canvas);
 
-    _xAxisRenderer!.renderAxisLabels(canvas);
-    _axisRendererLeft!.renderAxisLabels(canvas);
-    _axisRendererRight!.renderAxisLabels(canvas);
+    _xAxisRenderer.renderAxisLabels(canvas);
+    _axisRendererLeft.renderAxisLabels(canvas);
+    _axisRendererRight.renderAxisLabels(canvas);
 
     if (_clipValuesToContent) {
       canvas.save();
@@ -335,10 +335,10 @@ abstract class BarLineChartBasePainter<
 
   void prepareValuePxMatrix() {
     _rightAxisTransformer!.prepareMatrixValuePx(xAxis!.axisMinimum!,
-        xAxis!.axisRange, _axisRight!.axisRange, _axisRight!.axisMinimum!);
+        xAxis!.axisRange, _axisRight!.axisRange, _axisRight.axisMinimum!);
 
     _leftAxisTransformer!.prepareMatrixValuePx(xAxis!.axisMinimum!,
-        xAxis!.axisRange, _axisLeft!.axisRange, _axisLeft!.axisMinimum!);
+        xAxis!.axisRange, _axisLeft!.axisRange, _axisLeft.axisMinimum!);
   }
 
   void prepareOffsetMatrix() {
@@ -488,12 +488,12 @@ abstract class BarLineChartBasePainter<
 
     if (_axisLeft!.enabled) {
       _axisRendererLeft!.computeAxis(
-          _axisLeft!.axisMinimum, _axisLeft!.axisMaximum, _axisLeft!.inverted);
+          _axisLeft.axisMinimum, _axisLeft.axisMaximum, _axisLeft.inverted);
     }
 
     if (_axisRight!.enabled) {
-      _axisRendererRight!.computeAxis(_axisRight!.axisMinimum,
-          _axisRight!.axisMaximum, _axisRight!.inverted);
+      _axisRendererRight!.computeAxis(_axisRight.axisMinimum,
+          _axisRight.axisMaximum, _axisRight.inverted);
     }
 
     if (xAxis!.enabled) {
@@ -521,11 +521,11 @@ abstract class BarLineChartBasePainter<
       // offsets for y-labels
       if (_axisLeft!.needsOffset()) {
         offsetLeft +=
-            _axisLeft!.getRequiredWidthSpace(_axisRendererLeft!.axisLabelPaint);
+            _axisLeft.getRequiredWidthSpace(_axisRendererLeft!.axisLabelPaint);
       }
 
       if (_axisRight!.needsOffset()) {
-        offsetRight += _axisRight!
+        offsetRight += _axisRight
             .getRequiredWidthSpace(_axisRendererRight!.axisLabelPaint);
       }
 
@@ -603,9 +603,9 @@ abstract class BarLineChartBasePainter<
     }
 
     viewPortHandler!.zoom4(scaleX, scaleY, x!, -y!, _zoomMatrixBuffer!);
-    viewPortHandler!.refresh(_zoomMatrixBuffer!);
+    viewPortHandler!.refresh(_zoomMatrixBuffer);
     if (_chartTransListener != null) {
-      _chartTransListener!.scale(scaleX, scaleY, x, y);
+      _chartTransListener.scale(scaleX, scaleY, x, y);
     }
   }
 
@@ -614,7 +614,7 @@ abstract class BarLineChartBasePainter<
     viewPortHandler!.limitTransAndScale(
         viewPortHandler!.matrixTouch, viewPortHandler!.contentRect);
     if (_chartTransListener != null) {
-      _chartTransListener!.translate(dx, dy);
+      _chartTransListener.translate(dx, dy);
     }
   }
 

@@ -124,12 +124,12 @@ class RadarChartRenderer extends LineRadarRenderer {
         drawFilledPath3(
             c,
             surface,
-            dataSet.getGradientColor1()!.startColor.value,
-            dataSet.getGradientColor1()!.endColor.value,
+            dataSet.getGradientColor1()!.startColor.toARGB32(),
+            dataSet.getGradientColor1()!.endColor.toARGB32(),
             dataSet.getFillAlpha());
       } else {
         drawFilledPath2(
-            c, surface, dataSet.getFillColor().value, dataSet.getFillAlpha());
+            c, surface, dataSet.getFillColor().toARGB32(), dataSet.getFillAlpha());
       }
 //      }
     }
@@ -246,8 +246,12 @@ class RadarChartRenderer extends LineRadarRenderer {
     var color = _painter!.webColor!;
     _webPaint!
       ..strokeWidth = _painter!.webLineWidth
-      ..color =
-          Color.fromARGB(_painter!.webAlpha, color.red, color.green, color.blue);
+      ..color = Color.from(
+        alpha: ColorUtils.toDoubleAlpha(_painter!.webAlpha),
+        red: color.r,
+        green: color.g,
+        blue: color.b,
+      );
 
     final int xIncrements = 1 + _painter!.skipWebLineCount;
     int maxEntryCount =
@@ -266,8 +270,12 @@ class RadarChartRenderer extends LineRadarRenderer {
     color = _painter!.webColorInner!;
     _webPaint!
       ..strokeWidth = _painter!.innerWebLineWidth
-      ..color =
-          Color.fromARGB(_painter!.webAlpha, color.red, color.green, color.blue);
+      ..color = Color.from(
+        alpha: ColorUtils.toDoubleAlpha(_painter!.webAlpha),
+        red: color.r,
+        green: color.g,
+        blue: color.b,
+      );
 
     int labelCount = _painter!.yAxis!.entryCount;
 

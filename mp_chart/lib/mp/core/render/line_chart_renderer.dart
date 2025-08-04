@@ -106,8 +106,6 @@ class LineChartRenderer extends LineRadarRenderer {
       case Mode.HORIZONTAL_BEZIER:
         drawHorizontalBezier(c, dataSet);
         break;
-      default:
-        drawLinear(c, dataSet);
     }
   }
 
@@ -311,11 +309,11 @@ class LineChartRenderer extends LineRadarRenderer {
 //    } else {
 
     if (dataSet.isGradientEnabled()) {
-      drawFilledPath3(c, spline, dataSet.getGradientColor1()!.startColor.value,
-          dataSet.getGradientColor1()!.endColor.value, dataSet.getFillAlpha());
+      drawFilledPath3(c, spline, dataSet.getGradientColor1()!.startColor.toARGB32(),
+          dataSet.getGradientColor1()!.endColor.toARGB32(), dataSet.getFillAlpha());
     } else {
       drawFilledPath2(
-          c, spline, dataSet.getFillColor().value, dataSet.getFillAlpha());
+          c, spline, dataSet.getFillColor().toARGB32(), dataSet.getFillAlpha());
     }
 
 //    }
@@ -490,12 +488,12 @@ class LineChartRenderer extends LineRadarRenderer {
           drawFilledPath3(
               c,
               filled,
-              dataSet.getGradientColor1()!.startColor.value,
-              dataSet.getGradientColor1()!.endColor.value,
+              dataSet.getGradientColor1()!.startColor.toARGB32(),
+              dataSet.getGradientColor1()!.endColor.toARGB32(),
               dataSet.getFillAlpha());
         } else {
           drawFilledPath2(
-              c, filled, dataSet.getFillColor().value, dataSet.getFillAlpha());
+              c, filled, dataSet.getFillColor().toARGB32(), dataSet.getFillAlpha());
         }
       }
 

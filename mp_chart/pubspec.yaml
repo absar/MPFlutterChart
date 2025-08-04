@@ -1,6 +1,6 @@
 name: mp_chart
 description: A Flutter chart package just like AndroidMPChart, apply easy to use chart for Flutter.
-version: 1.7.1
+version: 1.8.0
 homepage: https://github.com/SunPointed/MPFlutterChart
 
 environment:
@@ -8,8 +8,8 @@ environment:
   flutter: ">=3.22.0"
 
 dependencies:
-  intl: '>=0.18.1 <0.20.0'
-  path_provider: ^2.1.4
+  intl: ^0.20.2
+  path_provider: ^2.1.5
   screenshot: ^3.0.0
   path_drawing: ^1.0.1
 #  image_gallery_saver: ^1.7.1

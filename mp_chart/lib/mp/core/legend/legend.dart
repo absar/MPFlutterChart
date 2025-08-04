@@ -117,7 +117,7 @@ class Legend extends ComponentBase {
     double? formToTextSpace = Utils.convertDpToPixel(_formToTextSpace);
     for (LegendEntry? entry in _entries) {
       final double formSize = Utils.convertDpToPixel(
-          double.nan == entry!.formSize ? _formSize : entry.formSize)!;
+          entry!.formSize.isNaN ? _formSize : entry.formSize)!;
       if (formSize > maxFormSize) maxFormSize = formSize;
 
       String? label = entry.label;

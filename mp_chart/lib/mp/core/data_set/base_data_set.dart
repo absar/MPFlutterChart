@@ -156,7 +156,14 @@ abstract class BaseDataSet<T extends Entry?> implements IDataSet<T> {
   void setColor3(ui.Color color, int alpha) {
     resetColors();
     alpha = alpha > 255 ? 255 : (alpha < 0 ? 0 : alpha);
-    _colors!.add(Color.fromARGB(alpha, color.red, color.green, color.blue));
+    _colors!.add(
+      Color.from(
+        alpha: ColorUtils.toDoubleAlpha(alpha),
+        red: color.r,
+        green: color.g,
+        blue: color.b,
+      ),
+    );
   }
 
   /// Sets the start and end color for gradient color, ONLY color that should be used for this DataSet.
@@ -179,7 +186,14 @@ abstract class BaseDataSet<T extends Entry?> implements IDataSet<T> {
   /// @param color
   /// @param alpha from 0-255
   void setColor2(ui.Color color, int alpha) {
-    setColor1(ui.Color.fromARGB(alpha, color.red, color.green, color.blue));
+    setColor1(
+      ui.Color.from(
+        alpha: ColorUtils.toDoubleAlpha(alpha),
+        red: color.r,
+        green: color.g,
+        blue: color.b,
+      ),
+    );
   }
 
   /// Sets colors with a specific alpha value.
@@ -189,7 +203,14 @@ abstract class BaseDataSet<T extends Entry?> implements IDataSet<T> {
   void setColors2(List<ui.Color> colors, int alpha) {
     resetColors();
     for (ui.Color color in colors) {
-      addColor(ui.Color.fromARGB(alpha, color.red, color.green, color.blue));
+      addColor(
+        ui.Color.from(
+          alpha: ColorUtils.toDoubleAlpha(alpha),
+          red: color.r,
+          green: color.g,
+          blue: color.b,
+        ),
+      );
     }
   }
 

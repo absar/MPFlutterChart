@@ -16,6 +16,7 @@ import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/core/poolable/point.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
+import '../utils/color_utils.dart' show ColorUtils;
 
 class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
   BubbleDataProvider? _provider;
@@ -148,8 +149,12 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
         for (int j = 0; j < positions.length; j += 2) {
           Color valueTextColor =
               dataSet.getValueTextColor2(j ~/ 2 + xBounds!.min!);
-          valueTextColor = Color.fromARGB((255.0 * alpha).round(),
-              valueTextColor.red, valueTextColor.green, valueTextColor.blue);
+          valueTextColor = Color.from(
+            alpha: ColorUtils.toDoubleAlpha((255.0 * alpha).round()),
+            red: valueTextColor.r,
+            green: valueTextColor.g,
+            blue: valueTextColor.b,
+          );
 
           double? x = positions[j];
           double? y = positions[j + 1];

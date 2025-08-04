@@ -19,6 +19,7 @@ import 'package:mp_chart/mp/core/utils/painter_utils.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
+import '../utils/color_utils.dart' show ColorUtils;
 
 class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
   BarDataProvider? _provider;
@@ -485,8 +486,12 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
       Transformer trans = _provider!.getTransformer(set.getAxisDependency())!;
 
       var color = set.getHighLightColor();
-      highlightPaint!.color = Color.fromARGB(
-          set.getHighLightAlpha(), color.red, color.green, color.blue);
+      highlightPaint!.color = Color.from(
+        alpha: ColorUtils.toDoubleAlpha(set.getHighLightAlpha()),
+        red: color.r,
+        green: color.g,
+        blue: color.b,
+      );
 
       bool isStack = (high.stackIndex >= 0 && e!.isStacked()) ? true : false;
 

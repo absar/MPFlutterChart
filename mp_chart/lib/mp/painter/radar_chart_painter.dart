@@ -156,7 +156,7 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
     super.calculateOffsets();
     calcMinMax();
     _yAxisRenderer.computeAxis(
-        _yAxis!.axisMinimum, _yAxis!.axisMaximum, _yAxis!.inverted);
+        _yAxis!.axisMinimum, _yAxis.axisMaximum, _yAxis.inverted);
     _xAxisRenderer.computeAxis(xAxis!.axisMinimum, xAxis!.axisMaximum, false);
     if (legend != null && !legend!.isLegendCustom)
       legendRenderer!.computeLegend(getData());
@@ -172,7 +172,7 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
 
     if (_drawWeb) renderer!.drawExtras(canvas);
 
-    if (_yAxis!.enabled && _yAxis!.drawLimitLineBehindData)
+    if (_yAxis!.enabled && _yAxis.drawLimitLineBehindData)
       _yAxisRenderer.renderLimitLines(canvas);
 
     renderer!.drawData(canvas);
@@ -180,7 +180,7 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
     if (valuesToHighlight())
       renderer!.drawHighlighted(canvas, indicesToHighlight);
 
-    if (_yAxis!.enabled && !_yAxis!.drawLimitLineBehindData)
+    if (_yAxis.enabled && !_yAxis.drawLimitLineBehindData)
       _yAxisRenderer.renderLimitLines(canvas);
 
     _yAxisRenderer.renderAxisLabels(canvas);

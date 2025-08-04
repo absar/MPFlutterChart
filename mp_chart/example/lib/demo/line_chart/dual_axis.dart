@@ -261,8 +261,8 @@ class LineChartDualAxisState extends LineActionState<LineChartDualAxis>
     set3.setLineWidth(2);
     set3.setCircleRadius(3);
     set3.setFillAlpha(65);
-    set3.setFillColor(Color.fromARGB(200, ColorUtils.YELLOW.red,
-        ColorUtils.YELLOW.green, ColorUtils.YELLOW.blue));
+    set3.setFillColor(Color.from(alpha:(200 & 0xff) / 255, red:ColorUtils.YELLOW.r,
+        green: ColorUtils.YELLOW.g, blue:ColorUtils.YELLOW.b));
     set3.setDrawCircleHole(false);
     set3.setHighLightColor(Color.fromARGB(255, 244, 117, 117));
 

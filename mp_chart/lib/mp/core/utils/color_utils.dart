@@ -123,11 +123,19 @@ abstract class ColorUtils {
     ];
 
   static Color colorWithAlpha(Color strokeColor, int alpha) {
-    return Color.fromARGB(
-        alpha, strokeColor.red, strokeColor.green, strokeColor.blue);
+    return Color.from(
+      alpha: toDoubleAlpha(alpha),
+      red: strokeColor.r,
+      green: strokeColor.g,
+      blue: strokeColor.b,
+    );
   }
 
   static Color getHoloBlue() {
     return Color.fromARGB(255, 51, 181, 229);
   }
+
+  /// Converts from Flutter legacy int based alpha, which was between 0 and 255 to new
+  /// double based alpha channel, which is between 0 and 1
+  static double toDoubleAlpha(int alpha) => (alpha & 0xff) / 255;
 }
