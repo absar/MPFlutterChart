@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:intl/intl.dart' as intl;
 
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
@@ -33,6 +34,7 @@ abstract class Utils {
 
     var originalTextAlign = paint.textAlign;
     paint.textAlign = TextAlign.left;
+    paint.textDirection = intl.Bidi.hasAnyRtl(text) ? TextDirection.rtl : TextDirection.ltr;
 
     if (angleDegrees != 0) {
       double translateX = x!;
@@ -106,6 +108,7 @@ abstract class Utils {
       XAxisPosition position) {
     var originalTextAlign = paint.textAlign;
     paint.textAlign = TextAlign.left;
+    paint.textDirection = intl.Bidi.hasAnyRtl(text) ? TextDirection.rtl : TextDirection.ltr;
     double drawOffsetX = 0;
     double drawOffsetY = 0;
     if (angleDegrees != 0) {
@@ -161,6 +164,7 @@ abstract class Utils {
 
     var originalTextAlign = paint.textAlign;
     paint.textAlign = TextAlign.left;
+    paint.textDirection = intl.Bidi.hasAnyRtl(text) ? TextDirection.rtl : TextDirection.ltr;
 
     if (angleDegrees != 0) {
       double translateX = x;
@@ -310,6 +314,9 @@ abstract class Utils {
   }
 
   static int calcTextWidth(TextPainter p, String? demoText) {
+    if (demoText != null) {
+      p.textDirection = intl.Bidi.hasAnyRtl(demoText) ? TextDirection.rtl : TextDirection.ltr;
+    }
     TextPainter painter = PainterUtils.create(
         p, demoText, p.text!.style!.color, p.text!.style!.fontSize);
     painter.layout();

@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:intl/intl.dart' as intl;
 
 import 'package:flutter/painting.dart';
 import 'package:mp_chart/mp/core/adapter_android_mp.dart';
@@ -850,6 +851,9 @@ class PieChartRenderer extends DataRenderer {
           _painter!.centerTextSize ?? Utils.convertDpToPixel(12),
           fontFamily: _painter!.centerTextTypeface?.fontFamily,
           fontWeight: _painter!.centerTextTypeface?.fontWeight);
+
+      _centerTextPaint!.textDirection =
+          intl.Bidi.hasAnyRtl(centerText) ? TextDirection.rtl : TextDirection.ltr;
       _centerTextPaint!.layout();
       _centerTextPaint!.paint(
           c,

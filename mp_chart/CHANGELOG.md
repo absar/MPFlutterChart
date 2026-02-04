@@ -1,3 +1,6 @@
+## 1.8.1 2026-02-04
+* RTL language text rendering fixes where value was shown after string instead of before e.g. K30 instead of 30K
+* Add some spacing between line chart axis values and chart content
 ## 1.8.0 2025-08-04
 * Flutter 3.32 updates
 * Upgrade dependencies 

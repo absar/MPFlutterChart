@@ -1,4 +1,4 @@
-
+import 'package:intl/intl.dart' as intl;
 import 'package:flutter/painting.dart';
 import 'package:mp_chart/mp/core/axis/y_axis.dart';
 import 'package:mp_chart/mp/core/enums/axis_dependency.dart';
@@ -13,6 +13,9 @@ import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'package:mp_chart/mp/core/utils/painter_utils.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
+
+/// Spacing between Y-Axis labels and chart contents
+const double kYAxisLabelPadding = 4.0;
 
 class YAxisRenderer extends AxisRenderer {
   YAxis? _yAxis;
@@ -62,13 +65,13 @@ class YAxisRenderer extends AxisRenderer {
         fontWeight: _yAxis!.typeface?.fontWeight);
     if (dependency == AxisDependency.LEFT) {
       if (labelPosition == YAxisLabelPosition.OUTSIDE_CHART) {
-        xPos = viewPortHandler!.offsetLeft();
+        xPos = viewPortHandler!.offsetLeft() - kYAxisLabelPadding;
       } else {
         xPos = viewPortHandler!.offsetLeft();
       }
     } else {
       if (labelPosition == YAxisLabelPosition.OUTSIDE_CHART) {
-        xPos = viewPortHandler!.contentRight();
+        xPos = viewPortHandler!.contentRight() + kYAxisLabelPadding;
       } else {
         xPos = viewPortHandler!.contentRight();
       }
@@ -128,6 +131,8 @@ class YAxisRenderer extends AxisRenderer {
     // draw
     for (int i = from; i < to; i++) {
       String text = _yAxis!.getFormattedLabel(i);
+      axisLabelPaint!.textDirection =
+          intl.Bidi.hasAnyRtl(text) ? TextDirection.rtl : TextDirection.ltr;
 
       axisLabelPaint!.text =
           TextSpan(text: text, style: axisLabelPaint!.text!.style);

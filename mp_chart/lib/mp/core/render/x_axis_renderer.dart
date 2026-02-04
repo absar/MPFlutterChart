@@ -13,6 +13,9 @@ import 'package:mp_chart/mp/core/poolable/point.dart';
 import 'package:mp_chart/mp/core/poolable/size.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 
+/// Spacing between X-Axis labels and chart contents
+const double kXAxisLabelPadding = 4.0;
+
 class XAxisRenderer extends AxisRenderer {
   XAxis? _xAxis;
 
@@ -106,7 +109,7 @@ class XAxisRenderer extends AxisRenderer {
     if (_xAxis!.position == XAxisPosition.TOP) {
       pointF.x = 0.5;
       pointF.y = 1.0;
-      drawLabels(c, viewPortHandler!.contentTop(), pointF, _xAxis!.position);
+      drawLabels(c, viewPortHandler!.contentTop() - kXAxisLabelPadding, pointF, _xAxis!.position);
     } else if (_xAxis!.position == XAxisPosition.TOP_INSIDE) {
       pointF.x = 0.5;
       pointF.y = 1.0;
@@ -115,7 +118,7 @@ class XAxisRenderer extends AxisRenderer {
     } else if (_xAxis!.position == XAxisPosition.BOTTOM) {
       pointF.x = 0.5;
       pointF.y = 0.0;
-      drawLabels(c, viewPortHandler!.contentBottom(), pointF, _xAxis!.position);
+      drawLabels(c, viewPortHandler!.contentBottom() + kXAxisLabelPadding, pointF, _xAxis!.position);
     } else if (_xAxis!.position == XAxisPosition.BOTTOM_INSIDE) {
       pointF.x = 0.5;
       pointF.y = 0.0;
@@ -125,11 +128,11 @@ class XAxisRenderer extends AxisRenderer {
       // BOTH SIDED
       pointF.x = 0.5;
       pointF.y = 1.0;
-      drawLabels(c, viewPortHandler!.contentTop(), pointF, XAxisPosition.TOP);
+      drawLabels(c, viewPortHandler!.contentTop() - kXAxisLabelPadding, pointF, XAxisPosition.TOP);
       pointF.x = 0.5;
       pointF.y = 0.0;
       drawLabels(
-          c, viewPortHandler!.contentBottom(), pointF, XAxisPosition.BOTTOM);
+          c, viewPortHandler!.contentBottom() + kXAxisLabelPadding, pointF, XAxisPosition.BOTTOM);
     }
     MPPointF.recycleInstance(pointF);
   }
