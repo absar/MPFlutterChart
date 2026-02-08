@@ -1,3 +1,11 @@
+## [1.9.0] 2026-02-07
+* BREAKING: Flutter 3.38 updates
+* BREAKING: Bump minimum supported Flutter version to 3.35
+* Upgrade dependencies
+* Upgrade example app to Gradle 8.14
+* Upgrade example sourceCompatibility JavaVersion.VERSION_17, targetCompatibility JavaVersion.VERSION_17
+* Upgrade example Kotlin to 2.2.21
+
 ## 1.8.1 2026-02-04
 * RTL language text rendering fixes where value was shown after string instead of before e.g. K30 instead of 30K
 * Add some spacing between line chart axis values and chart content
