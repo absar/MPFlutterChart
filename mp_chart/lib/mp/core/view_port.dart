@@ -298,7 +298,7 @@ class ViewPortHandler {
   ///
   /// @param transformedPts
   /// @return
-  void translate2(final List<double> transformedPts, Matrix4 outputMatrix) {
+  void translate2(List<double> transformedPts, Matrix4 outputMatrix) {
     _matrixTouch.copyInto(outputMatrix);
     final double x = transformedPts[0] - offsetLeft();
     final double y = transformedPts[1] - offsetTop();
@@ -313,7 +313,7 @@ class ViewPortHandler {
   /// setScaleMinima(...) method.
   ///
   /// @param transformedPts the position to center view viewport to
-  void centerViewPort(final List<double> transformedPts) {
+  void centerViewPort(List<double> transformedPts) {
     mCenterViewPortMatrixBuffer = Matrix4.identity();
     Matrix4 save = mCenterViewPortMatrixBuffer;
     _matrixTouch.copyInto(save);

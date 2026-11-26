@@ -213,8 +213,8 @@ abstract class BarLineScatterCandleBubbleController<
 
   P? get painter => super.painter;
 
-  void setViewPortOffsets(final double left, final double top,
-      final double right, final double bottom) {
+  void setViewPortOffsets(double left, double top,
+      double right, double bottom) {
     customViewPortEnabled = true;
     viewPortHandler!.restrainViewPort(left, top, right, bottom);
   }

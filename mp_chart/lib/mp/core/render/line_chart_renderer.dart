@@ -508,8 +508,8 @@ class LineChartRenderer extends LineRadarRenderer {
   /// @param endIndex   The index from which to stop reading the dataset
   /// @param outputPath The path object that will be assigned the chart data.
   /// @return
-  void generateFilledPath(final ILineDataSet dataSet, final int startIndex,
-      final int endIndex, final Path outputPath, final Transformer trans) {
+  void generateFilledPath(ILineDataSet dataSet, int startIndex,
+      int endIndex, Path outputPath, Transformer trans) {
     final double fillMin =
         dataSet.getFillFormatter().getFillLinePosition(dataSet, _provider);
     final double phaseY = animator!.getPhaseY();

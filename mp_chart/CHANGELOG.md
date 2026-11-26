@@ -1,3 +1,8 @@
+## [1.10.0] 2026-11-28
+* BREAKING: Flutter 3.47 updates
+* Upgrade dependencies
+* Android migrate to Gradle and AGP 9+
+
 ## [1.9.1] 2026-08-20
 * Upgrade dependencies
 
